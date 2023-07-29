@@ -36,6 +36,9 @@ const ProductList = () => {
   return (
     <div className="container mt-3">
       <div className={"bg-light d-sm-block d-md-flex"}>
+        <h5 className="text-center mt-5 text-danger">
+          Free shipping after $4000!
+        </h5>
         {loading ? (
           <Loading />
         ) : products.length > 0 ? (
