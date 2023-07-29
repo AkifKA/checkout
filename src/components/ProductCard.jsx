@@ -4,9 +4,29 @@ const ProductCard = ({ item, getProducts }) => {
   const { name, image, amount, dampingRate, price, id } = item;
   const url = process.env.REACT_APP_API_URL;
 
-  const handleMinus = () => {};
+  const handleMinus = async () => {
+    try {
+      await axios.put(`${url}/${id}`, {
+        ...item,
+        amount: amount - 1,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+    getProducts();
+  };
 
-  const handlePlus = () => {};
+  const handlePlus = async () => {
+    try {
+      await axios.put(`${url}/${id}`, {
+        ...item,
+        amount: amount + 1,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+    getProducts();
+  };
 
   const handleRemove = async () => {
     try {
@@ -31,7 +51,7 @@ const ProductCard = ({ item, getProducts }) => {
         <div className="col-md-7">
           <div className="card-body">
             <h5 className="card-title" role="button">
-              {name}
+              {name.toUpperCase()}
             </h5>
             <div className="product-price">
               <p className="text-warning h2">
