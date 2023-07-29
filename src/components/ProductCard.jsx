@@ -33,6 +33,18 @@ const ProductCard = ({ item, getProducts }) => {
     getProducts();
   };
 
+  const resetAmount = async () => {
+    try {
+      await axios.put(`${url}/${id}`, {
+        ...item,
+        amount: 1,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+    getProducts();
+  };
+
   const handleRemove = async () => {
     try {
       await axios.delete(`${url}/${id}`);
@@ -41,11 +53,8 @@ const ProductCard = ({ item, getProducts }) => {
     }
     getProducts();
   };
-
   useEffect(() => {
-    if (amount < 1) {
-      setShowWarningModal(true);
-    }
+    amount === 0 && setShowWarningModal(true);
   }, [amount]);
 
   return (
@@ -111,6 +120,8 @@ const ProductCard = ({ item, getProducts }) => {
           showWarningModal={showWarningModal}
           setShowWarningModal={setShowWarningModal}
           handleRemove={handleRemove}
+          name={name}
+          resetAmount={resetAmount}
         />
       )}
     </div>
