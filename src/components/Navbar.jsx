@@ -3,13 +3,10 @@ import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
   return (
-    <nav
-      className="navbar navbar-expand-lg bg-dark border-bottom border-body"
-      data-bs-theme="dark"
-    >
+    <nav className="navbar navbar-expand-lg bg-body-tertiary bg-primary">
       <div className="container-fluid">
         <NavLink className="navbar-brand" to="/">
-          CHECKOUT
+          Checkout
         </NavLink>
         <button
           className="navbar-toggler"
