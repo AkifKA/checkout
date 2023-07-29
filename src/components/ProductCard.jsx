@@ -1,6 +1,10 @@
 import axios from "axios";
+import WarningModal from "./WarningModal";
+import { useEffect, useState } from "react";
 
 const ProductCard = ({ item, getProducts }) => {
+  const [showWarningModal, setShowWarningModal] = useState(false);
+
   const { name, image, amount, dampingRate, price, id } = item;
   const url = process.env.REACT_APP_API_URL;
 
@@ -13,6 +17,7 @@ const ProductCard = ({ item, getProducts }) => {
     } catch (error) {
       console.log(error);
     }
+
     getProducts();
   };
 
@@ -36,6 +41,12 @@ const ProductCard = ({ item, getProducts }) => {
     }
     getProducts();
   };
+
+  useEffect(() => {
+    if (amount < 1) {
+      setShowWarningModal(true);
+    }
+  }, [amount]);
 
   return (
     <div className="card shadow-lg mb-3">
@@ -69,6 +80,7 @@ const ProductCard = ({ item, getProducts }) => {
                 <button className="btn btn-secondary btn-sm">
                   <i className="fas fa-minus" onClick={handleMinus}></i>
                 </button>
+                {}
                 <p className="d-inline mx-4" id="product-quantity">
                   {amount}
                 </p>
@@ -94,6 +106,13 @@ const ProductCard = ({ item, getProducts }) => {
           </div>
         </div>
       </div>
+      {showWarningModal && (
+        <WarningModal
+          showWarningModal={showWarningModal}
+          setShowWarningModal={setShowWarningModal}
+          handleRemove={handleRemove}
+        />
+      )}
     </div>
   );
 };
