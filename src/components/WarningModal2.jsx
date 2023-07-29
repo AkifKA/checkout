@@ -1,22 +1,32 @@
+import axios from "axios";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
-function WarningModal({
-  showWarningModal,
-  setShowWarningModal,
-  resetAmount,
-  handleRemove,
+function WarningModal2({
+  showWarningModal2,
+  setShowWarningModal2,
+  getProducts,
   name,
+  url,
+  id,
 }) {
   const handleClose = () => {
-    resetAmount();
-    setShowWarningModal(false);
+    setShowWarningModal2(false);
+  };
+
+  const handleRemove = async () => {
+    try {
+      await axios.delete(`${url}/${id}`);
+    } catch (error) {
+      console.log(error);
+    }
+    getProducts();
   };
 
   return (
     <>
       <Modal
-        show={showWarningModal}
+        show={showWarningModal2}
         onHide={handleClose}
         backdrop="static"
         keyboard={false}
@@ -38,4 +48,4 @@ function WarningModal({
   );
 }
 
-export default WarningModal;
+export default WarningModal2;

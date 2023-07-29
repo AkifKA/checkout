@@ -1,9 +1,11 @@
 import axios from "axios";
 import WarningModal from "./WarningModal";
 import { useEffect, useState } from "react";
+import WarningModal2 from "./WarningModal2";
 
 const ProductCard = ({ item, getProducts }) => {
   const [showWarningModal, setShowWarningModal] = useState(false);
+  const [showWarningModal2, setShowWarningModal2] = useState(false);
 
   const { name, image, amount, dampingRate, price, id } = item;
   const url = process.env.REACT_APP_API_URL;
@@ -45,13 +47,8 @@ const ProductCard = ({ item, getProducts }) => {
     getProducts();
   };
 
-  const handleRemove = async () => {
-    try {
-      await axios.delete(`${url}/${id}`);
-    } catch (error) {
-      console.log(error);
-    }
-    getProducts();
+  const handleRemove = () => {
+    setShowWarningModal2(true);
   };
   useEffect(() => {
     amount === 0 && setShowWarningModal(true);
@@ -68,6 +65,7 @@ const ProductCard = ({ item, getProducts }) => {
             title={name}
           />
         </div>
+
         <div className="col-md-7">
           <div className="card-body">
             <h5 className="card-title" role="button">
@@ -89,7 +87,6 @@ const ProductCard = ({ item, getProducts }) => {
                 <button className="btn btn-secondary btn-sm">
                   <i className="fas fa-minus" onClick={handleMinus}></i>
                 </button>
-                {}
                 <p className="d-inline mx-4" id="product-quantity">
                   {amount}
                 </p>
@@ -122,6 +119,16 @@ const ProductCard = ({ item, getProducts }) => {
           handleRemove={handleRemove}
           name={name}
           resetAmount={resetAmount}
+        />
+      )}
+      {showWarningModal2 && (
+        <WarningModal2
+          showWarningModal2={showWarningModal2}
+          setShowWarningModal2={setShowWarningModal2}
+          name={name}
+          getProducts={getProducts}
+          url={url}
+          id={id}
         />
       )}
     </div>
