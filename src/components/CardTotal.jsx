@@ -1,7 +1,7 @@
 import React from "react";
 
 const taxRate = 0.18;
-let shipping = 25;
+let shipping = 0;
 
 const CardTotal = ({ products }) => {
   const subTotal = products.reduce(
@@ -11,10 +11,9 @@ const CardTotal = ({ products }) => {
   );
   const taxedPrice = subTotal * taxRate;
 
-  if (subTotal > 4000) {
-    shipping = 0;
+  if (subTotal <= 2000) {
+    shipping = 25;
   }
-
   return (
     <table className="table w-100">
       <tbody>
@@ -34,9 +33,9 @@ const CardTotal = ({ products }) => {
         <tr className="text-end">
           <th className="text-start">Shipping</th>
           <td>
-            {subTotal > 4000 ? (
+            {subTotal > 2000 ? (
               <span className="shipping text-warning">
-                $0 (No shipping after $4000!)
+                $0 (No shipping after $2000!)
               </span>
             ) : (
               <>
@@ -48,7 +47,10 @@ const CardTotal = ({ products }) => {
         <tr className="text-end">
           <th className="text-start">Total</th>
           <td>
-            $<span className="total">{subTotal + shipping + taxedPrice}</span>
+            $
+            <span className="total">
+              {(subTotal + shipping + taxedPrice).toFixed(2)}
+            </span>
           </td>
         </tr>
       </tbody>
