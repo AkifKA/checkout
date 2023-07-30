@@ -23,7 +23,7 @@ const ProductList = () => {
       console.log(data);
     } catch (error) {
       console.log(error);
-      setErrorMessage(error);
+      setErrorMessage(error.message);
       setErrorState(true);
     }
   };

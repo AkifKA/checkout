@@ -35,6 +35,7 @@ const UpdateProduct = () => {
         formData={formData}
         text="Update"
       />
+
       <Buttons />
     </div>
   );
