@@ -36,7 +36,7 @@ const CardTotal = ({ products }) => {
           <td>
             {subTotal > 4000 ? (
               <span className="shipping text-warning">
-                0 (No shipping after $4000!)
+                $0 (No shipping after $4000!)
               </span>
             ) : (
               <>
