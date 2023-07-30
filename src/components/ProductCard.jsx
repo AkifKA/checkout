@@ -2,13 +2,17 @@ import axios from "axios";
 import WarningModal from "./WarningModal";
 import { useEffect, useState } from "react";
 import WarningModal2 from "./WarningModal2";
+import { useNavigate } from "react-router-dom";
 
 const ProductCard = ({ item, getProducts }) => {
   const [showWarningModal, setShowWarningModal] = useState(false);
   const [showWarningModal2, setShowWarningModal2] = useState(false);
 
-  const { name, image, amount, dampingRate, price, id } = item;
   const url = process.env.REACT_APP_API_URL;
+
+  const { name, image, amount, dampingRate, price, id } = item;
+
+  const navigate = useNavigate();
 
   const handleMinus = async () => {
     try {
@@ -54,6 +58,10 @@ const ProductCard = ({ item, getProducts }) => {
     amount === 0 && setShowWarningModal(true);
   }, [amount]);
 
+  const editProduct = () => {
+    navigate("/update-product", { state: item });
+  };
+
   return (
     <div className="card shadow-lg mb-3">
       <div className="row g-0">
@@ -68,7 +76,7 @@ const ProductCard = ({ item, getProducts }) => {
 
         <div className="col-md-7">
           <div className="card-body">
-            <h5 className="card-title" role="button">
+            <h5 className="card-title" role="button" onClick={editProduct}>
               {name.toUpperCase()}
             </h5>
             <div className="product-price">

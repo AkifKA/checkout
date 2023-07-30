@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ProductForm from "../components/ProductForm";
 import axios from "axios";
+import Buttons from "../components/Buttons";
 
 const initalState = {
   name: "",
@@ -33,7 +34,9 @@ const NewProduct = () => {
         handleChange={handleChange}
         handleSubmit={handleSubmit}
         formData={formData}
+        text="New"
       />
+      <Buttons />
     </div>
   );
 };

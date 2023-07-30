@@ -3,6 +3,7 @@ import ProductCard from "../components/ProductCard";
 import CardTotal from "../components/CardTotal";
 import axios from "axios";
 import Loading from "../components/Loading";
+import Buttons from "../components/Buttons";
 
 const ProductList = () => {
   const url = process.env.REACT_APP_API_URL;
@@ -65,6 +66,7 @@ const ProductList = () => {
           <p className="text-center text-danger w-100">Error: {errorMessage}</p>
         )}
       </div>
+      <Buttons />
     </div>
   );
 };
