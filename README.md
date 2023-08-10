@@ -34,20 +34,23 @@ Overall, the project showcases basic CRUD (Create, Read, Update, Delete) functio
 ├── public
 │     └── index.html
 ├── src
-│   ├── App.css
-│   ├── App.js
 │   ├── components
-│   │   ├── AddProduct.jsx
-│   │   ├── Button.jsx
+│   │   ├── Buttons.jsx
 │   │   ├── CardTotal.jsx
-│   │   ├── Header.jsx
-│   │   └── ProductCard.jsx
-│   ├── helper
-│   │   └── data.js
+│   │   ├── Loading.jsx
+│   │   ├── ProductCard.jsx
+│   │   ├── ProductForm.jsx
+│   │   ├── ProductCard.jsx
+│   │   ├── Warning Modal.jsx
+│   │   └── Warning Modal2.jsx
+│   └── pages
+│       ├── About.jsx
+│   │   ├── NewProduct.jsx
+│   │   ├── ProductList.jsx
+│   │   └── UpdatedProduct.jsx
+│   ├── App.js
 │   ├── index.css
 │   ├── index.js
-│   └── pages
-│       └── Main.jsx
 ├── package.json
 └── yarn.lock
 ```
